@@ -1,5 +1,5 @@
 {
-  "name": "laravel-doctrine/fluent",
+  "name": "vast-ru/laravel-doctrine-fluent",
   "description": "A fluent PHP mapping driver for Doctrine2.",
   "license": "MIT",
   "keywords": [
