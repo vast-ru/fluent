@@ -10,14 +10,14 @@ use LaravelDoctrine\Fluent\Mappers\Mapper;
 use Tests\Stubs\MappedSuperClasses\StubMappedSuperClass;
 use Tests\Stubs\Mappings\StubMappedSuperClassMapping;
 
-class MappedSuperClassMapperTest extends \PHPUnit_Framework_TestCase
+class MappedSuperClassMapperTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var MappedSuperClassMapper
      */
     protected $mapper;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $mapping      = new StubMappedSuperClassMapping();
         $this->mapper = new MappedSuperClassMapper($mapping);

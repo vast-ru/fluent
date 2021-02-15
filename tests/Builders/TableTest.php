@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping\ClassMetadataInfo;
 use LaravelDoctrine\Fluent\Builders\Table;
 use Tests\Stubs\Entities\StubEntity;
 
-class TableTest extends \PHPUnit_Framework_TestCase
+class TableTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var ClassMetadataBuilder
@@ -19,7 +19,7 @@ class TableTest extends \PHPUnit_Framework_TestCase
      */
     protected $table;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->builder = new ClassMetadataBuilder(new ClassMetadataInfo(StubEntity::class));
         $this->table   = new Table($this->builder);

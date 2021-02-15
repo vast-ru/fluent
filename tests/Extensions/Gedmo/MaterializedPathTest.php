@@ -12,9 +12,8 @@ use LaravelDoctrine\Fluent\Extensions\Gedmo\TreePath;
 use LaravelDoctrine\Fluent\Extensions\Gedmo\TreePathHash;
 use LaravelDoctrine\Fluent\Extensions\Gedmo\TreePathSource;
 use LaravelDoctrine\Fluent\Fluent;
-use PHPUnit_Framework_TestCase;
 
-class MaterializedPathTest extends PHPUnit_Framework_TestCase
+class MaterializedPathTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var ExtensibleClassMetadata
@@ -31,7 +30,7 @@ class MaterializedPathTest extends PHPUnit_Framework_TestCase
      */
     private $tree;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->classMetadata = new ExtensibleClassMetadata("Foo");
         $this->builder       = new Builder(new ClassMetadataBuilder($this->classMetadata));
@@ -46,14 +45,8 @@ class MaterializedPathTest extends PHPUnit_Framework_TestCase
     {
         MaterializedPath::enable();
 
-        /** @var \Mockery\Mock $mock */
-        $mock = \Mockery::mock(['callMe' => true]);
-        $mock->shouldReceive('callMe')->once();
-
         $field = $this->builder->integer('foo');
-        $this->assertInstanceOf(TreePath::class, $field->treePath('|', function ($path) use ($mock) {
-            $mock->callMe();
-        }));
+        $this->assertInstanceOf(TreePath::class, $field->treePath('|'));
 
         $this->assertInstanceOf(TreePathHash::class, $field->treePathHash());
         $this->assertInstanceOf(TreePathSource::class, $field->treePathSource());
@@ -177,7 +170,7 @@ class MaterializedPathTest extends PHPUnit_Framework_TestCase
      * @param array $expected
      *
      * @return void
-     * @throws \PHPUnit_Framework_ExpectationFailedException
+     * @throws \PHPUnit\Framework\ExpectationFailedException
      */
     protected function assertExtensionEquals(array $expected)
     {
@@ -191,7 +184,7 @@ class MaterializedPathTest extends PHPUnit_Framework_TestCase
      * @param mixed  $expected
      *
      * @return void
-     * @throws \PHPUnit_Framework_ExpectationFailedException
+     * @throws \PHPUnit\Framework\ExpectationFailedException
      */
     protected function assertExtensionKeyEquals($key, $expected)
     {

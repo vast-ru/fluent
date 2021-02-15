@@ -11,9 +11,9 @@ use LaravelDoctrine\Fluent\Extensions\Gedmo\Sluggable;
 use Tests\Stubs\Entities\StubEntity;
 
 /**
- * @mixin \PHPUnit_Framework_TestCase
+ * @mixin \PHPUnit\Framework\TestCase
  */
-class SluggableTest extends \PHPUnit_Framework_TestCase
+class SluggableTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var ClassMetadataBuilder
@@ -35,7 +35,7 @@ class SluggableTest extends \PHPUnit_Framework_TestCase
      */
     private $extension;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->fieldName = 'slug';
         $this->classMetadata = new ExtensibleClassMetadata(StubEntity::class);
@@ -56,7 +56,8 @@ class SluggableTest extends \PHPUnit_Framework_TestCase
 
     public function test_can_only_make_a_valid_field_sluggable()
     {
-        $this->setExpectedException(InvalidArgumentException::class, 'Sluggable field is not a valid field type');
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('Sluggable field is not a valid field type');
 
         Sluggable::enable();
 
@@ -162,7 +163,7 @@ class SluggableTest extends \PHPUnit_Framework_TestCase
      * @param array $expected
      *
      * @return void
-     * @throws \PHPUnit_Framework_ExpectationFailedException
+     * @throws \PHPUnit\Framework\ExpectationFailedException
      */
     protected function assertBuildResultIs(array $expected)
     {

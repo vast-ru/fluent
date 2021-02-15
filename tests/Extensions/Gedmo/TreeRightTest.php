@@ -10,9 +10,9 @@ use Gedmo\Tree\Mapping\Driver\Fluent as TreeDriver;
 use LaravelDoctrine\Fluent\Extensions\Gedmo\TreeRight;
 
 /**
- * @mixin \PHPUnit_Framework_TestCase
+ * @mixin \PHPUnit\Framework\TestCase
  */
-class TreeRightTest extends \PHPUnit_Framework_TestCase
+class TreeRightTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var string
@@ -29,7 +29,7 @@ class TreeRightTest extends \PHPUnit_Framework_TestCase
      */
     private $extension;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->fieldName     = 'rgt';
         $this->classMetadata = new ExtensibleClassMetadata('foo');
@@ -63,7 +63,8 @@ class TreeRightTest extends \PHPUnit_Framework_TestCase
 
     public function test_right_should_be_integer()
     {
-        $this->setExpectedException(InvalidMappingException::class, 'Tree right field must be \'integer\' in class - foo');
+        $this->expectException(InvalidMappingException::class);
+        $this->expectExceptionMessage('Tree right field must be \'integer\' in class - foo');
 
         $this->classMetadata = new ExtensibleClassMetadata('foo');
         Field::make(new ClassMetadataBuilder($this->classMetadata), 'string', $this->fieldName)->build();
@@ -78,7 +79,7 @@ class TreeRightTest extends \PHPUnit_Framework_TestCase
      * @param array $expected
      *
      * @return void
-     * @throws \PHPUnit_Framework_ExpectationFailedException
+     * @throws \PHPUnit\Framework\ExpectationFailedException
      */
     protected function assertBuildResultIs(array $expected)
     {

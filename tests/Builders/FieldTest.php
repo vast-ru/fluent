@@ -13,7 +13,7 @@ use LaravelDoctrine\Fluent\Builders\GeneratedValue;
 use LaravelDoctrine\Fluent\Builders\Traits\Macroable;
 use Tests\Stubs\Entities\StubEntity;
 
-class FieldTest extends \PHPUnit_Framework_TestCase
+class FieldTest extends \Mockery\Adapter\Phpunit\MockeryTestCase
 {
     use IsMacroable;
     
@@ -27,7 +27,7 @@ class FieldTest extends \PHPUnit_Framework_TestCase
      */
     protected $field;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->builder = new ClassMetadataBuilder(new ClassMetadataInfo(StubEntity::class));
         $this->builder->setTable('stub_entities');
@@ -202,8 +202,10 @@ class FieldTest extends \PHPUnit_Framework_TestCase
 
     public function test_cannot_call_non_existing_field_builder_methods()
     {
-        $this->setExpectedException(
-            BadMethodCallException::class,
+        $this->expectException(
+            BadMethodCallException::class
+        );
+        $this->expectExceptionMessage(
             'FieldBuilder method [nonExisting] does not exist.'
         );
 
@@ -312,7 +314,7 @@ class FieldTest extends \PHPUnit_Framework_TestCase
 
     public function test_ids_cannot_be_used_for_versioning()
     {
-        $this->setExpectedException(MappingException::class);
+        $this->expectException(MappingException::class);
 
         $this->field
             ->primary()
@@ -356,7 +358,7 @@ class FieldTest extends \PHPUnit_Framework_TestCase
         $builder = new ClassMetadataBuilder(new ClassMetadataInfo(StubEntity::class));
         $field   = Field::make($builder, $type, "aField");
 
-        $this->setExpectedException(MappingException::class);
+        $this->expectException(MappingException::class);
         $field->useForVersioning()->build();
     }
 

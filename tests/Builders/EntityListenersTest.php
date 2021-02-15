@@ -10,7 +10,7 @@ use Symfony\Component\VarDumper\Cloner\Stub;
 use Tests\Stubs\Entities\StubEntity;
 use Tests\Stubs\StubEntityListener;
 
-class EntityListenersTest extends \PHPUnit_Framework_TestCase
+class EntityListenersTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var EntityListeners
@@ -22,7 +22,7 @@ class EntityListenersTest extends \PHPUnit_Framework_TestCase
      */
     protected $fluent;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->fluent = new ClassMetadataBuilder(
             new ClassMetadataInfo(StubEntity::class)
@@ -39,7 +39,7 @@ class EntityListenersTest extends \PHPUnit_Framework_TestCase
      * @param string|null $method
      * @param string      $expectedMethod
      */
-    public function test_can_add_event_listeners($event, $listener, $method = null, $expectedMethod)
+    public function test_can_add_event_listeners($event, $listener, $method, $expectedMethod)
     {
         $this->builder->{$event}($listener, $method);
 

@@ -11,14 +11,14 @@ use Tests\Stubs\Entities\StubEntity;
 use Tests\Stubs\Mappings\StubEmbeddableMapping;
 use Tests\Stubs\Mappings\StubEntityMapping;
 
-class MapperSetTest extends \PHPUnit_Framework_TestCase
+class MapperSetTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @type MapperSet
      */
     protected $mapperSet;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->mapperSet = new MapperSet;
         $this->mapperSet->add(new StubEntityMapping);
@@ -35,8 +35,10 @@ class MapperSetTest extends \PHPUnit_Framework_TestCase
 
     public function test_it_should_fail_when_asked_for_an_unmapped_class()
     {
-        $this->setExpectedException(
-            MappingException::class,
+        $this->expectException(
+            MappingException::class
+        );
+        $this->expectExceptionMessage(
             'Class [baz] does not have a mapping configuration. Make sure you create a Mapping class that extends either LaravelDoctrine\Fluent\EntityMapping, LaravelDoctrine\Fluent\EmbeddableMapping or LaravelDoctrine\Fluent\MappedSuperClassMapping. If you are using inheritance mapping, remember to create mappings for every child of the inheritance tree.'
         );
 

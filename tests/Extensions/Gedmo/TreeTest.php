@@ -14,9 +14,9 @@ use LaravelDoctrine\Fluent\Extensions\Gedmo\NestedSet;
 use LaravelDoctrine\Fluent\Extensions\Gedmo\Tree;
 
 /**
- * @mixin \PHPUnit_Framework_TestCase
+ * @mixin \PHPUnit\Framework\TestCase
  */
-class TreeTest extends \PHPUnit_Framework_TestCase
+class TreeTest extends \Mockery\Adapter\Phpunit\MockeryTestCase
 {
     /**
      * @var string
@@ -38,7 +38,7 @@ class TreeTest extends \PHPUnit_Framework_TestCase
      */
     private $builder;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->classMetadata = new ExtensibleClassMetadata('foo');
         $this->builder       = new Builder(new ClassMetadataBuilder($this->classMetadata), new DefaultNamingStrategy);
@@ -127,7 +127,7 @@ class TreeTest extends \PHPUnit_Framework_TestCase
      * @param array $expected
      *
      * @return void
-     * @throws \PHPUnit_Framework_ExpectationFailedException
+     * @throws \PHPUnit\Framework\ExpectationFailedException
      */
     protected function assertBuildResultIs(array $expected)
     {

@@ -11,14 +11,14 @@ use LaravelDoctrine\Fluent\Builders\Traits\QueuesMacros;
 /**
  * @covers \LaravelDoctrine\Fluent\Builders\Traits\QueuesMacros
  */
-class QueueableTest extends \PHPUnit_Framework_TestCase
+class QueueableTest extends \Mockery\Adapter\Phpunit\MockeryTestCase
 {
     /**
      * @var QueueableClass
      */
     private $queueable;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->queueable = new QueueableClass();
     }

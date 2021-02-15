@@ -5,7 +5,7 @@ use InvalidArgumentException;
 use LaravelDoctrine\Fluent\Builders\Traits\Macroable;
 
 /**
- * @mixin \PHPUnit_Framework_TestCase
+ * @mixin \PHPUnit\Framework\TestCase
  */
 trait IsMacroable
 {
@@ -33,8 +33,10 @@ trait IsMacroable
 
     public function test_can_only_be_extended_with_closures()
     {
-        $this->setExpectedException(
-            InvalidArgumentException::class,
+        $this->expectException(
+            InvalidArgumentException::class
+        );
+        $this->expectExceptionMessage(
             'Macros should be used with a closure argument, none given'
         );
 

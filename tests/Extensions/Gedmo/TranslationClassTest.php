@@ -11,9 +11,9 @@ use LaravelDoctrine\Fluent\Extensions\Gedmo\TranslationClass;
 use LaravelDoctrine\Fluent\Extensions\Gedmo\Translatable;
 
 /**
- * @mixin \PHPUnit_Framework_TestCase
+ * @mixin \PHPUnit\Framework\TestCase
  */
-class TranslationClassTest extends \PHPUnit_Framework_TestCase
+class TranslationClassTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var string
@@ -30,7 +30,7 @@ class TranslationClassTest extends \PHPUnit_Framework_TestCase
      */
     private $extension;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->className     = 'TranslationClass';
         $this->classMetadata = new ExtensibleClassMetadata('foo');
@@ -64,7 +64,7 @@ class TranslationClassTest extends \PHPUnit_Framework_TestCase
      * @param array $expected
      *
      * @return void
-     * @throws \PHPUnit_Framework_ExpectationFailedException
+     * @throws \PHPUnit\Framework\ExpectationFailedException
      */
     protected function assertBuildResultIs(array $expected)
     {

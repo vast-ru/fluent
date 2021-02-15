@@ -11,9 +11,9 @@ use LaravelDoctrine\Fluent\Extensions\Gedmo\TreeSelfReference;
 use LaravelDoctrine\Fluent\Relations\ManyToOne;
 
 /**
- * @mixin \PHPUnit_Framework_TestCase
+ * @mixin \PHPUnit\Framework\TestCase
  */
-class TreeSelfReferenceTest extends \PHPUnit_Framework_TestCase
+class TreeSelfReferenceTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var string
@@ -25,7 +25,7 @@ class TreeSelfReferenceTest extends \PHPUnit_Framework_TestCase
      */
     protected $classMetadata;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->fieldName     = 'root';
         $this->classMetadata = new ExtensibleClassMetadata('foo');
@@ -148,7 +148,7 @@ class TreeSelfReferenceTest extends \PHPUnit_Framework_TestCase
      * @param array $expected
      *
      * @return void
-     * @throws \PHPUnit_Framework_ExpectationFailedException
+     * @throws \PHPUnit\Framework\ExpectationFailedException
      */
     protected function assertBuildResultIs(array $expected)
     {

@@ -36,7 +36,7 @@ use Tests\FakeEntity;
 use Tests\Stubs\Embedabbles\StubEmbeddable;
 use Tests\Stubs\StubEntityListener;
 
-class BuilderTest extends \PHPUnit_Framework_TestCase
+class BuilderTest extends \Mockery\Adapter\Phpunit\MockeryTestCase
 {
     use IsMacroable;
 
@@ -82,7 +82,7 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
         'simpleArray'      => Type::SIMPLE_ARRAY,
     ];
 
-    public static function setUpBeforeClass()
+    public static function setUpBeforeClass(): void
     {
         Type::addType(CarbonDateTimeType::CARBONDATETIME, CarbonDateTimeType::class);
         Type::addType(CarbonDateTimeTzType::CARBONDATETIMETZ, CarbonDateTimeTzType::class);
@@ -91,7 +91,7 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
         Type::addType(ZendDateType::ZENDDATE, ZendDateType::class);
     }
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->builder = new ClassMetadataBuilder(new ClassMetadataInfo(
             FluentEntity::class
@@ -161,7 +161,7 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
     public function test_cannot_use_table_settings_for_embeddable()
     {
         $this->builder->setEmbeddable();
-        $this->setExpectedException(LogicException::class);
+        $this->expectException(LogicException::class);
 
         $this->fluent->table('users');
     }
@@ -222,7 +222,7 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
     {
         $this->builder->setEmbeddable();
 
-        $this->setExpectedException(LogicException::class);
+        $this->expectException(LogicException::class);
 
         $this->fluent->entity();
     }
@@ -374,7 +374,7 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
     {
         $this->builder->setEmbeddable();
 
-        $this->setExpectedException(LogicException::class);
+        $this->expectException(LogicException::class);
 
         $this->fluent->increments('id');
     }
@@ -383,7 +383,7 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
     {
         $this->builder->setEmbeddable();
 
-        $this->setExpectedException(LogicException::class);
+        $this->expectException(LogicException::class);
 
         $this->fluent->smallIncrements('id');
     }
@@ -392,7 +392,7 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
     {
         $this->builder->setEmbeddable();
 
-        $this->setExpectedException(LogicException::class);
+        $this->expectException(LogicException::class);
 
         $this->fluent->bigIncrements('id');
     }
@@ -640,8 +640,10 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
 
     public function test_fluent_builder_method_should_exist()
     {
-        $this->setExpectedException(
-            InvalidArgumentException::class,
+        $this->expectException(
+            InvalidArgumentException::class
+        );
+        $this->expectExceptionMessage(
             'Fluent builder method [doesNotExist] does not exist'
         );
 
@@ -774,6 +776,7 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
 
         try {
             $this->fluent->getClassMetadata()->getAssociationMapping('fluentEntity');
+            $this->addToAssertionCount(1);
         } catch (MappingException $e) {
             $this->fail("Could not find default name for the oneToOne relation. " . $e->getMessage());
         }
@@ -787,6 +790,7 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
 
         try {
             $this->fluent->getClassMetadata()->getAssociationMapping('fluentEntity');
+            $this->addToAssertionCount(1);
         } catch (MappingException $e) {
             $this->fail("Could not find default name for the hasOne relation. " . $e->getMessage());
         }
@@ -800,6 +804,7 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
 
         try {
             $this->fluent->getClassMetadata()->getAssociationMapping('fluentEntity');
+            $this->addToAssertionCount(1);
         } catch (MappingException $e) {
             $this->fail("Could not find default name for the belongsTo relation. " . $e->getMessage());
         }
@@ -813,6 +818,7 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
 
         try {
             $this->fluent->getClassMetadata()->getAssociationMapping('fluentEntities');
+            $this->addToAssertionCount(1);
         } catch (MappingException $e) {
             $this->fail("Could not find default name for the oneToMany relation. " . $e->getMessage());
         }
@@ -826,6 +832,7 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
 
         try {
             $this->fluent->getClassMetadata()->getAssociationMapping('fluentEntities');
+            $this->addToAssertionCount(1);
         } catch (MappingException $e) {
             $this->fail("Could not find default name for the hasMany relation. " . $e->getMessage());
         }
@@ -839,6 +846,7 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
 
         try {
             $this->fluent->getClassMetadata()->getAssociationMapping('fluentEntities');
+            $this->addToAssertionCount(1);
         } catch (MappingException $e) {
             $this->fail("Could not find default name for the manyToMany relation. " . $e->getMessage());
         }
@@ -852,6 +860,7 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
 
         try {
             $this->fluent->getClassMetadata()->getAssociationMapping('fluentEntities');
+            $this->addToAssertionCount(1);
         } catch (MappingException $e) {
             $this->fail("Could not find default name for the belongsToMany relation. " . $e->getMessage());
         }

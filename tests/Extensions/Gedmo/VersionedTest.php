@@ -10,9 +10,8 @@ use LaravelDoctrine\Fluent\Extensions\ExtensibleClassMetadata;
 use LaravelDoctrine\Fluent\Extensions\Gedmo\Versioned;
 use LaravelDoctrine\Fluent\Relations\ManyToOne;
 use LaravelDoctrine\Fluent\Relations\OneToOne;
-use PHPUnit_Framework_TestCase;
 
-class VersionedTest extends PHPUnit_Framework_TestCase
+class VersionedTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var Versioned
@@ -29,7 +28,7 @@ class VersionedTest extends PHPUnit_Framework_TestCase
      */
     private $fieldName;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->classMetadata = new ExtensibleClassMetadata('foo');
         $this->fieldName     = 'someField';

@@ -9,7 +9,7 @@ use LaravelDoctrine\Fluent\Builders\Delay;
 use LaravelDoctrine\Fluent\Builders\Overrides\Override;
 use Tests\Stubs\Entities\StubEntity;
 
-class OverrideTest extends \PHPUnit_Framework_TestCase
+class OverrideTest extends \PHPUnit\Framework\TestCase
 {
     public function test_can_build_attribute_override()
     {

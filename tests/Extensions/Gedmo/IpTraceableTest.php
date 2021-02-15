@@ -7,9 +7,8 @@ use LaravelDoctrine\Fluent\Builders\Field;
 use LaravelDoctrine\Fluent\Extensions\ExtensibleClassMetadata;
 use LaravelDoctrine\Fluent\Extensions\Gedmo\AbstractTrackingExtension;
 use LaravelDoctrine\Fluent\Extensions\Gedmo\IpTraceable;
-use PHPUnit_Framework_TestCase;
 
-class IpTraceableTest extends PHPUnit_Framework_TestCase
+class IpTraceableTest extends \PHPUnit\Framework\TestCase
 {
     use TrackingExtensions;
     
@@ -18,7 +17,7 @@ class IpTraceableTest extends PHPUnit_Framework_TestCase
      */
     private $extension;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->fieldName     = 'ip';
         $this->classMetadata = new ExtensibleClassMetadata('foo');

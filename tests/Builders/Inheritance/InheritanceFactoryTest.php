@@ -11,14 +11,14 @@ use LaravelDoctrine\Fluent\Builders\Inheritance\JoinedTableInheritance;
 use LaravelDoctrine\Fluent\Builders\Inheritance\SingleTableInheritance;
 use Tests\Stubs\Entities\StubEntity;
 
-class InheritanceFactoryTest extends \PHPUnit_Framework_TestCase
+class InheritanceFactoryTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var ClassMetadataBuilder
      */
     protected $builder;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->builder = new ClassMetadataBuilder(new ClassMetadataInfo(
             StubEntity::class
@@ -59,8 +59,10 @@ class InheritanceFactoryTest extends \PHPUnit_Framework_TestCase
 
     public function test_can_only_create_joined_or_single_table_inheritance()
     {
-        $this->setExpectedException(
-            InvalidArgumentException::class,
+        $this->expectException(
+            InvalidArgumentException::class
+        );
+        $this->expectExceptionMessage(
             'Inheritance type [NON_EXISTING] does not exist. SINGLE_TABLE and JOINED are support'
         );
 

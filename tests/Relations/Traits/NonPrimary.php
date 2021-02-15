@@ -8,8 +8,10 @@ trait NonPrimary
     {
         $this->assertFalse($this->relation->getBuilder()->getClassMetadata()->isIdentifier($this->field));
 
-        $this->setExpectedException(
-            'Doctrine\ORM\Mapping\MappingException',
+        $this->expectException(
+            \Doctrine\ORM\Mapping\MappingException::class
+        );
+        $this->expectExceptionMessage(
             'Many-to-many or one-to-many associations are not allowed to be identifier in \'Tests\Relations\FluentEntity#' . $this->field . '\''
         );
 

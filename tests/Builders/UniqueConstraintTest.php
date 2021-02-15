@@ -7,14 +7,14 @@ use Doctrine\ORM\Mapping\ClassMetadataInfo;
 use LaravelDoctrine\Fluent\Builders\UniqueConstraint;
 use Tests\Stubs\Entities\StubEntity;
 
-class UniqueConstraintTest extends \PHPUnit_Framework_TestCase
+class UniqueConstraintTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var ClassMetadataBuilder
      */
     protected $builder;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->builder = new ClassMetadataBuilder(new ClassMetadataInfo(StubEntity::class));
         $this->builder->setTable('stub_entities');

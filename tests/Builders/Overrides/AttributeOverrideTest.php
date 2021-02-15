@@ -10,14 +10,14 @@ use InvalidArgumentException;
 use LaravelDoctrine\Fluent\Builders\Overrides\AttributeOverride;
 use Tests\Stubs\Entities\StubEntity;
 
-class AttributeOverrideTest extends \PHPUnit_Framework_TestCase
+class AttributeOverrideTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var ClassMetadataBuilder
      */
     protected $builder;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->builder = new ClassMetadataBuilder(new ClassMetadataInfo(
             StubEntity::class
@@ -28,8 +28,10 @@ class AttributeOverrideTest extends \PHPUnit_Framework_TestCase
 
     public function test_it_should_return_instance_of_field()
     {
-        $this->setExpectedException(
-            InvalidArgumentException::class,
+        $this->expectException(
+            InvalidArgumentException::class
+        );
+        $this->expectExceptionMessage(
             'The callback should return an instance of LaravelDoctrine\Fluent\Builders\Field'
         );
 
@@ -42,8 +44,10 @@ class AttributeOverrideTest extends \PHPUnit_Framework_TestCase
 
     public function test_the_overridden_field_should_exist()
     {
-        $this->setExpectedException(
-            MappingException::class,
+        $this->expectException(
+            MappingException::class
+        );
+        $this->expectExceptionMessage(
             'No mapping found for field \'non_existing\' on class \'Tests\Stubs\Entities\StubEntity\'.'
         );
 

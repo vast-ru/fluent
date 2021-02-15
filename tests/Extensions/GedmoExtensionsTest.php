@@ -2,7 +2,7 @@
 
 namespace Tests\Extensions;
 
-use Doctrine\Common\Persistence\Mapping\Driver\MappingDriverChain;
+use Doctrine\Persistence\Mapping\Driver\MappingDriverChain;
 use Doctrine\ORM\Mapping\Builder\ClassMetadataBuilder;
 use Doctrine\ORM\Mapping\DefaultNamingStrategy;
 use Gedmo\Loggable\Entity\LogEntry;
@@ -17,9 +17,8 @@ use LaravelDoctrine\Fluent\Extensions\ExtensibleClassMetadata;
 use LaravelDoctrine\Fluent\Extensions\GedmoExtensions;
 use LaravelDoctrine\Fluent\Relations\ManyToMany;
 use LaravelDoctrine\Fluent\Relations\ManyToOne;
-use PHPUnit_Framework_TestCase;
 
-class GedmoExtensionsTest extends PHPUnit_Framework_TestCase
+class GedmoExtensionsTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @dataProvider getClasses

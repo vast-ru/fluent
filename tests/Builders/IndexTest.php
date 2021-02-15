@@ -7,14 +7,14 @@ use Doctrine\ORM\Mapping\ClassMetadataInfo;
 use LaravelDoctrine\Fluent\Builders\Index;
 use Tests\Stubs\Entities\StubEntity;
 
-class IndexTest extends \PHPUnit_Framework_TestCase
+class IndexTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var ClassMetadataBuilder
      */
     protected $builder;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->builder = new ClassMetadataBuilder(new ClassMetadataInfo(StubEntity::class));
         $this->builder->setTable('stub_entities');

@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping\ClassMetadataInfo;
 use Doctrine\ORM\Mapping\DefaultNamingStrategy;
 use LaravelDoctrine\Fluent\Builders\Embedded;
 
-class EmbeddedTest extends \PHPUnit_Framework_TestCase
+class EmbeddedTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var ClassMetadataBuilder
@@ -19,7 +19,7 @@ class EmbeddedTest extends \PHPUnit_Framework_TestCase
      */
     protected $embedded;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->builder = new ClassMetadataBuilder(new ClassMetadataInfo(
             FluentEmbeddable::class

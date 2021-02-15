@@ -10,14 +10,14 @@ use LaravelDoctrine\Fluent\Mappers\Mapper;
 use Tests\Stubs\Embedabbles\StubEmbeddable;
 use Tests\Stubs\Mappings\StubEmbeddableMapping;
 
-class EmbeddableMapperTest extends \PHPUnit_Framework_TestCase
+class EmbeddableMapperTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var EmbeddableMapper
      */
     protected $mapper;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $mapping      = new StubEmbeddableMapping();
         $this->mapper = new EmbeddableMapper($mapping);

@@ -7,7 +7,7 @@ use InvalidArgumentException;
 use LaravelDoctrine\Fluent\Relations\AssociationCache;
 use Tests\Stubs\Entities\StubEntity;
 
-class AssociationCacheTest extends \PHPUnit_Framework_TestCase
+class AssociationCacheTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var string
@@ -19,7 +19,7 @@ class AssociationCacheTest extends \PHPUnit_Framework_TestCase
      */
     protected $metadata;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->metadata = new ClassMetadata(StubEntity::class);
     }
@@ -50,8 +50,10 @@ class AssociationCacheTest extends \PHPUnit_Framework_TestCase
 
     public function test_cannot_set_non_existing_cache_usages()
     {
-        $this->setExpectedException(
-            InvalidArgumentException::class,
+        $this->expectException(
+            InvalidArgumentException::class
+        );
+        $this->expectExceptionMessage(
             '[NON_EXISTING] is not a valid cache usage. Available: READ_ONLY, NONSTRICT_READ_WRITE, READ_WRITE'
         );
 

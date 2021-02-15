@@ -10,9 +10,9 @@ use Gedmo\SoftDeleteable\Mapping\Driver\Fluent as SoftDeleteableDriver;
 use LaravelDoctrine\Fluent\Extensions\Gedmo\SoftDeleteable;
 
 /**
- * @mixin \PHPUnit_Framework_TestCase
+ * @mixin \PHPUnit\Framework\TestCase
  */
-class SoftDeleteableTest extends \PHPUnit_Framework_TestCase
+class SoftDeleteableTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var string
@@ -29,7 +29,7 @@ class SoftDeleteableTest extends \PHPUnit_Framework_TestCase
      */
     private $extension;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->fieldName     = 'deletedAt';
         $this->classMetadata = new ExtensibleClassMetadata('foo');
@@ -88,7 +88,7 @@ class SoftDeleteableTest extends \PHPUnit_Framework_TestCase
      * @param array $expected
      *
      * @return void
-     * @throws \PHPUnit_Framework_ExpectationFailedException
+     * @throws \PHPUnit\Framework\ExpectationFailedException
      */
     protected function assertBuildResultIs(array $expected)
     {

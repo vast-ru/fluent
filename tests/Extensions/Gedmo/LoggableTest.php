@@ -11,9 +11,8 @@ use LaravelDoctrine\Fluent\Extensions\ExtensibleClassMetadata;
 use LaravelDoctrine\Fluent\Extensions\Gedmo\Loggable;
 use LaravelDoctrine\Fluent\Relations\ManyToOne;
 use LaravelDoctrine\Fluent\Relations\OneToOne;
-use PHPUnit_Framework_TestCase;
 
-class LoggableTest extends PHPUnit_Framework_TestCase
+class LoggableTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var Loggable
@@ -25,7 +24,7 @@ class LoggableTest extends PHPUnit_Framework_TestCase
      */
     private $classMetadata;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->classMetadata = new ExtensibleClassMetadata('foo');
         $this->loggable      = new Loggable($this->classMetadata);

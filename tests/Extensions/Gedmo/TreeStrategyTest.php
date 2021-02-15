@@ -13,7 +13,7 @@ use LaravelDoctrine\Fluent\Extensions\Gedmo\TreeStrategy;
 use LaravelDoctrine\Fluent\Fluent;
 use LaravelDoctrine\Fluent\Relations\ManyToOne;
 
-abstract class TreeStrategyTest extends \PHPUnit_Framework_TestCase
+abstract class TreeStrategyTest extends \Mockery\Adapter\Phpunit\MockeryTestCase
 {
     /**
      * @var Fluent
@@ -105,7 +105,7 @@ abstract class TreeStrategyTest extends \PHPUnit_Framework_TestCase
      */
     public function test_it_should_not_allow_strings_in_any_numeric_field($fieldName)
     {
-        $this->setExpectedException(InvalidMappingException::class);
+        $this->expectException(InvalidMappingException::class);
 
         $this->strategy->$fieldName('custom', 'string')->build();
     }
@@ -170,7 +170,7 @@ abstract class TreeStrategyTest extends \PHPUnit_Framework_TestCase
      * @param array $expected
      *
      * @return void
-     * @throws \PHPUnit_Framework_ExpectationFailedException
+     * @throws \PHPUnit\Framework\ExpectationFailedException
      */
     protected function assertExtensionEquals(array $expected)
     {
@@ -184,7 +184,7 @@ abstract class TreeStrategyTest extends \PHPUnit_Framework_TestCase
      * @param mixed $expected
      *
      * @return void
-     * @throws \PHPUnit_Framework_ExpectationFailedException
+     * @throws \PHPUnit\Framework\ExpectationFailedException
      */
     protected function assertExtensionKeyEquals($key, $expected)
     {

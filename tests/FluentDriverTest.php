@@ -2,7 +2,7 @@
 
 namespace Tests;
 
-use Doctrine\Common\Persistence\Mapping\ClassMetadata;
+use Doctrine\Persistence\Mapping\ClassMetadata;
 use Doctrine\ORM\Mapping\Builder\ClassMetadataBuilder;
 use Doctrine\ORM\Mapping\ClassMetadataInfo;
 use Doctrine\ORM\Mapping\MappingException;
@@ -20,7 +20,7 @@ use Tests\Stubs\Mappings\StubEmbeddableMapping;
 use Tests\Stubs\Mappings\StubEntityMapping;
 use Tests\Stubs\Mappings\StubMappedSuperClassMapping;
 
-class FluentDriverTest extends \PHPUnit_Framework_TestCase
+class FluentDriverTest extends \PHPUnit\Framework\TestCase
 {
     public function test_it_should_load_metadata_for_entities_that_were_added_to_it()
     {
@@ -128,7 +128,8 @@ class FluentDriverTest extends \PHPUnit_Framework_TestCase
 
     public function test_the_given_mapping_class_should_exist()
     {
-        $this->setExpectedException(\InvalidArgumentException::class, 'Mapping class [Tests\DoesnExist] does not exist');
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Mapping class [Tests\DoesnExist] does not exist');
 
         $driver = new FluentDriver;
 
@@ -139,7 +140,8 @@ class FluentDriverTest extends \PHPUnit_Framework_TestCase
 
     public function test_the_given_mapping_class_should_implement_mapping()
     {
-        $this->setExpectedException(\InvalidArgumentException::class, 'Mapping class [Tests\Stubs\Entities\StubEntity] should implement LaravelDoctrine\Fluent\Mapping');
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Mapping class [Tests\Stubs\Entities\StubEntity] should implement LaravelDoctrine\Fluent\Mapping');
 
         $driver = new FluentDriver;
 
@@ -204,8 +206,10 @@ class FluentDriverTest extends \PHPUnit_Framework_TestCase
     {
         $driver = new FluentDriver();
 
-        $this->setExpectedException(
-            MappingException::class,
+        $this->expectException(
+            MappingException::class
+        );
+        $this->expectExceptionMessage(
             'Class [Tests\FakeEntity] does not have a mapping configuration. Make sure you create a Mapping class that extends either LaravelDoctrine\Fluent\EntityMapping, LaravelDoctrine\Fluent\EmbeddableMapping or LaravelDoctrine\Fluent\MappedSuperClassMapping. If you are using inheritance mapping, remember to create mappings for every child of the inheritance tree.'
         );
 
@@ -223,7 +227,7 @@ class FluentDriverTest extends \PHPUnit_Framework_TestCase
             return new CustomBuilder(new ClassMetadataBuilder($metadata));
         });
 
-        $mapping = $this->getMock(EntityMapping::class);
+        $mapping = $this->createMock(EntityMapping::class);
         $mapping->expects($this->once())->method('map')->with($this->isInstanceOf(CustomBuilder::class));
 
         $driver->getMappers()->addMapper('fake', new EntityMapper($mapping));

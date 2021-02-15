@@ -8,9 +8,9 @@ use Gedmo\Translatable\Mapping\Driver\Fluent as TranslatableDriver;
 use LaravelDoctrine\Fluent\Extensions\Gedmo\Translatable;
 
 /**
- * @mixin \PHPUnit_Framework_TestCase
+ * @mixin \PHPUnit\Framework\TestCase
  */
-class TranslatableTest extends \PHPUnit_Framework_TestCase
+class TranslatableTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var string
@@ -27,7 +27,7 @@ class TranslatableTest extends \PHPUnit_Framework_TestCase
      */
     private $extension;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->fieldName     = 'title';
         $this->classMetadata = new ExtensibleClassMetadata('foo');
@@ -77,7 +77,7 @@ class TranslatableTest extends \PHPUnit_Framework_TestCase
      * @param array $expected
      *
      * @return void
-     * @throws \PHPUnit_Framework_ExpectationFailedException
+     * @throws \PHPUnit\Framework\ExpectationFailedException
      */
     protected function assertBuildResultIs(array $expected)
     {

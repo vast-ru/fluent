@@ -8,7 +8,7 @@ use LaravelDoctrine\Fluent\Builders\Field;
 use LaravelDoctrine\Fluent\Extensions\ExtensibleClassMetadata;
 use LaravelDoctrine\Fluent\Extensions\Gedmo\SortablePosition;
 
-class SortablePositionTest extends \PHPUnit_Framework_TestCase
+class SortablePositionTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var string
@@ -25,7 +25,7 @@ class SortablePositionTest extends \PHPUnit_Framework_TestCase
      */
     private $extension;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->fieldName     = 'position';
         $this->classMetadata = new ExtensibleClassMetadata('foo');
@@ -61,7 +61,7 @@ class SortablePositionTest extends \PHPUnit_Framework_TestCase
      * @param array $expected
      *
      * @return void
-     * @throws \PHPUnit_Framework_ExpectationFailedException
+     * @throws \PHPUnit\Framework\ExpectationFailedException
      */
     protected function assertBuildResultIs(array $expected)
     {

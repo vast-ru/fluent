@@ -8,7 +8,7 @@ use Tests\Stubs\Entities\StubEntity;
 use Tests\Stubs\Entities\StubEntity2;
 use Tests\Stubs\Entities\StubEntity3;
 
-class InheritanceTestCase extends \PHPUnit_Framework_TestCase
+class InheritanceTestCase extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var ClassMetadataBuilder
